@@ -280,7 +280,7 @@
       <div class="project-content">
         <h2 class="title"><div class="text">Project</div></h2>
       </div>
-      <div class="slick-slider">
+      <!-- <div class="slick-slider">
         <li>
           <div class="full-card">
             <div class="font-card robotoslab-card">
@@ -364,7 +364,8 @@
             </div>
           </div>
         </li>
-      </div>
+      </div> -->
+      <Carousel3 />
     </div>
   </section>
 
@@ -439,12 +440,14 @@
 import { ref, onMounted, onUnmounted } from "vue";
 import VueTyper from "vue3-typer";
 import "vue3-typer/dist/vue-typer.css";
+import Carousel3 from "../widgets/carousel3.vue";
+import Carousel2 from "../widgets/carousel2.vue";
 // import { useRoute } from "vue-router";
 // import { useAuthStore } from "@/store/auth/store";
 
 export default {
   name: "LayoutDefault",
-  components: { VueTyper },
+  components: { VueTyper, Carousel3, Carousel2 },
   setup() {
     const isSticky = ref(false);
     const isScrollUp = ref(false);

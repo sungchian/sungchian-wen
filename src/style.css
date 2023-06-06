@@ -48,6 +48,11 @@ section{
     /* min-width: 1500px; */
 }
 
+.sticky {
+    /* 不加這個tailwind會蓋過去 */
+    position: fixed !important;
+}
+
 .navbar{
     position: fixed;
     top: 0;
@@ -411,7 +416,8 @@ footer .scroll i{
 }
 
 .skill-item .skill-name, .skill-item .skill-p ul li{
-    padding-bottom: 30px;
+    padding: 10px 0;
+    font-size: 20px;
 }
 
 
@@ -425,7 +431,7 @@ footer .scroll i{
     width: 80%;
     height: 3px;
     background-color: var(--gold);
-    top: 25px;
+    top: 40px;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -523,7 +529,8 @@ footer .scroll i{
 
 /*================================ project section style ================================*/
 .project{
-    background: var(--black);
+    /* background: var(--black); */
+    background: var(--white);
     justify-content: center;
     align-items: center;
     font-size: 14px;
