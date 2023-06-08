@@ -1,5 +1,5 @@
 <template>
-  <modal />
+  <!-- <modal /> -->
   <the-nav :class="{ sticky: isSticky,  '-top-20': isScrollUp}" />
 
   <!--Home Section-->
@@ -365,7 +365,7 @@
           </div>
         </li>
       </div> -->
-      <Carousel3 />
+      <Carousel2 />
     </div>
   </section>
 

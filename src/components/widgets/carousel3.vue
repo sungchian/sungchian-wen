@@ -13,7 +13,7 @@
     ref="carousel"
   >
     <Slide v-for="slide in test" :key="slide">
-      <div class="carousel__item" @click="slideTo((slide - 1)/2)">{{ slide }}</div>
+      <div class="carousel__item" @click="slideTo(slide - 1)">{{ slide }}</div>
     </Slide>
   </Carousel>
 </template>
@@ -32,7 +32,7 @@ export default defineComponent({
     Navigation,
   },
   setup() {
-    const test = reactive([1,3,5,7,9,11,13,17])
+    const test = reactive(["1", "2", "3", "4", "5", "6", "7", "8"])
     const slides = reactive([
       {
         id: 1,
@@ -63,7 +63,7 @@ export default defineComponent({
       },
     ]);
 
-    let currentSlide = ref("0");
+    let currentSlide = ref("5");
 
     const slideTo = (val) => {
       currentSlide.value = String(val)
