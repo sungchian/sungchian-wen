@@ -74,7 +74,7 @@ export default defineComponent({
         pic1: "linebot01.jpg",
         pic2: "linebot02.jpg",
         pic1Title: "Line 醫療查詢機器人",
-        pic2Title: "顯示地圖位置v",
+        pic2Title: "顯示地圖位置",
         context:
           '一開始的想法是說，現在人主要溝通訊息都是用LINE，那如果把一些查詢功能結合到LINE上面，是不是會比下載APP或是網頁搜尋還來的直覺，然後我們一開始是參考"卡米狗"的LINE機器人去做參考的。',
       },
