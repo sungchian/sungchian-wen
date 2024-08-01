@@ -18,7 +18,7 @@
           <a href="#project" class="navlink">Project</a>
         </li>
         <li class="nav-item">
-          <a href="#contect" class="navlink">Contect</a>
+          <a href="#Contact" class="navlink">Contact</a>
         </li>
       </ul>
       <div class="menu-btn">

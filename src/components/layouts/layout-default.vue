@@ -1,6 +1,6 @@
 <template>
   <!-- <modal /> -->
-  <the-nav :class="{ sticky: isSticky,  '-top-20': isScrollUp}" />
+  <the-nav :class="{ sticky: isSticky, '-top-20': isScrollUp }" />
 
   <!--Home Section-->
   <section class="home" id="home">
@@ -26,7 +26,7 @@
   <!--About Section-->
   <section class="about" id="about">
     <div class="max-width">
-      <h2 class="title"><div class="text">About me</div></h2>
+      <h2 class="title"><div class="text">ABOUT ME</div></h2>
       <div class="about-content">
         <div class="column left">
           <img src="../../assets/selfie.jpg" alt="" />
@@ -58,12 +58,8 @@
             ></vue-typer
             >.
           </div>
-          <p>
-            I am a passionate and quick learning software engineer with one and
-            a half years of internship experience and one and a half years
-            full-time job in computer science and software developing for wide
-            range of projects and industries along with excellent problem
-            solving and communication skills.
+          <p class="intro-text">
+            {{ intro }}
           </p>
           <a href="./files/resume.pdf" download="resume.pdf">Download</a>
         </div>
@@ -71,11 +67,11 @@
     </div>
   </section>
 
-  <!--Skill Section-->
-  <section class="skill" id="skill">
+  <!--Certificates Section-->
+  <!-- <section class="certificates" id="certificates">
     <div class="w2">
-      <div class="skill-content">
-        <h2 class="title"><div class="text">Skill</div></h2>
+      <div class="certificates-content">
+        <h2 class="title"><div class="text">CERTIFICATES</div></h2>
       </div>
     </div>
     <div class="max-width">
@@ -147,21 +143,50 @@
             </div>
           </div>
         </li>
-        <!-- <li class="skill-list">
-                    <div class="skill-item item4">
-                        <img src="../../assets/gold-circle.png" alt="" class="skill-img">
-                        <h3 class="skill-name white-t">Git</h3>
-                        <p class="skill-p white-t">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea iusto culpa recusandae, suscipit aspernatur dolor quo nisi praesentium, nihil nesciunt et eos totam, ipsam nulla repudiandae. Eius optio excepturi totam!</p>
-                    </div>
-                </li>
-                <li class="skill-list">
-                    <div class="skill-item item5">
-                        <img src="../../assets/gold-circle.png" alt="" class="skill-img">
-                        <h3 class="skill-name white-t">Vue.js</h3>
-                        <p class="skill-p white-t">Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, saepe sequi ad at dignissimos debitis consequatur? Nesciunt pariatur minima cum, eligendi sed provident doloremque magni quod illo commodi quas quisquam.</p>
-                    </div>
-                </li> -->
-      </ul>
+    </div>
+  </section> -->
+
+  <!--Certificates Section-->
+  <section class="certificates" id="certificates">
+    <div class="max-width">
+      <div class="certificates-content">
+        <h2 class="title"><div class="text">CERTIFICATES</div></h2>
+      </div>
+      <div class="certificates-row">
+        <div
+          v-for="(cert, index) in certificates"
+          :key="index"
+          class="certificate-item"
+        >
+          <a :href="cert.href" target="_blank">
+            <div class="certificate-image-container">
+              <img :src="cert.imgSrc" :alt="cert.alt" class="certificate-img" />
+              <div class="certificate-overlay flex flex-col">
+                <p
+                  v-for="(skill, skillIndex) in cert.skills"
+                  :key="skillIndex"
+                  class="certificate-skill"
+                >
+                  {{ skill }}
+                </p>
+              </div>
+            </div>
+            <h3 class="certificate-name">{{ cert.name }}</h3>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--Skill Section-->
+  <section class="skill" id="skill">
+    <div class="w2">
+      <div class="skill-content">
+        <h2 class="title"><div class="text">SKILLS</div></h2>
+      </div>
+    </div>
+    <div class="max-width">
+      <skillComponent />
     </div>
   </section>
 
@@ -169,106 +194,57 @@
   <section class="exp" id="exp">
     <div class="max-width">
       <div class="exp-content">
-        <h2 class="title"><div class="text">Experience</div></h2>
-        <div class="main-line">
-          <svg
-            class="exp-main"
-            width="19"
-            height="875"
-            viewBox="0 0 19 875"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+        <h2 class="title"><div class="text">EXPERIENCE</div></h2>
+        <div class="card-container">
+          <div
+            v-for="(job, index) in jobs"
+            :key="index"
+            class="card-sub-container"
           >
-            <path
-              d="M9.5 0.339746L0.839746 9L9.5 17.6603L18.1603 9L9.5 0.339746ZM9.5 874.66L18.1603 866L9.5 857.34L0.839746 866L9.5 874.66ZM8 9L8 866H11L11 9H8Z"
-              fill="black"
-            />
-          </svg>
-        </div>
-        <div class="exp-inner">
-          <ul class="exp-list">
-            <li class="exp-item">
-              <div class="exp-item-content">
-                <div class="exp-item-card">
-                  <h4 class="exp-content-time">Feb. 2022 – Aug. 2022</h4>
-                  <img src="../../assets/trillions.jpg" alt="" />
-                </div>
-                <h3 class="exp-content-title">
-                  Trillions Digital Co. Ltd., Taiwan
+            <button
+              class="card btn btn-link btn-block text-left"
+              type="button"
+              :class="{
+                collapsed: !isJobOpen(index),
+                'focus-exp': isJobOpen(index),
+              }"
+              @click="toggleJob(index)"
+              :aria-expanded="isJobOpen(index)"
+              :aria-controls="'collapse' + index"
+            >
+              <div class="card-header" :id="'heading' + index">
+                <h3 class="mb-0 flex justify-between">
+                  <div>{{ job.company }}</div>
+                  <div>{{ job.location }}</div>
                 </h3>
-                <p class="exp-content-p">
-                  Leveraged knowledge:<br /><br />Vue 3, Vite, Vuex, Axios,
-                  Tailwind CSS, Ramda.js, CKEditor5, Vuelidate, Apache ECharts
-                </p>
-              </div>
-            </li>
-            <li class="exp-item">
-              <div class="exp-item-content">
-                <div class="exp-item-card">
-                  <h4 class="exp-content-time">
-                    May. 2020 – Oct. 2020 (Intern)<br />
-                    Mar. 2021 – Feb. 2022
-                  </h4>
-                  <img
-                    src="../../assets/logo.svg"
-                    style="background-color: white"
-                    alt=""
-                  />
+                <div class="block">
+                  {{ job.position }}
                 </div>
-                <h3 class="exp-content-title">
-                  Shin Kong Wu Ho-Su Memorial Hospital, Taiwan
-                </h3>
-                <p class="exp-content-p">
-                  Leveraged knowledge:<br /><br />C#, MSSQL, jQuery, .net core,
-                  Bootstrap5
-                </p>
               </div>
-            </li>
-            <li class="exp-item">
-              <div class="exp-item-content">
-                <div class="exp-item-card">
-                  <h4 class="exp-content-time">
-                    Mar. 2020 – May. 2020 (Intern)
-                  </h4>
-                  <img src="../../assets/fju.jpg" alt="" />
-                </div>
-                <h3 class="exp-content-title">
-                  Fu Jen Catholic University Hospital, Taiwan
-                </h3>
-                <p class="exp-content-p">
-                  Leveraged knowledge:<br /><br />C#, MSSQL, jQuery, .net core,
-                  Kendo UI
-                </p>
+            </button>
+            <div
+              :id="'collapse' + index"
+              class="collapse-content"
+              :style="{
+                maxHeight: isJobOpen(index) ? getMaxHeight(index) : '0px',
+              }"
+              :aria-labelledby="'heading' + index"
+              data-parent="#experienceAccordion"
+            >
+              <div class="card-body">
+                <p class="text-muted">{{ job.duration }}</p>
+                <ul class="list-unstyled">
+                  <li
+                    v-for="(responsibility, rIndex) in job.responsibilities"
+                    :key="rIndex"
+                    class="mb-2"
+                  >
+                    {{ responsibility }}
+                  </li>
+                </ul>
               </div>
-            </li>
-            <li class="exp-item">
-              <div class="exp-item-content">
-                <div class="exp-item-card">
-                  <h4 class="exp-content-time">
-                    Jul. 2019 – Feb. 2020 (Intern)
-                  </h4>
-                  <img src="../../assets/hash_school.png" alt="" />
-                </div>
-                <h3 class="exp-content-title">
-                  Hash Programming School, Taiwan
-                </h3>
-                <p class="exp-content-p">
-                  Leveraged knowledge:<br /><br />Python, WebSocket,
-                  BeautifulSoup, Facebook advertising
-                </p>
-              </div>
-            </li>
-            <li class="exp-item">
-              <div class="exp-item-content">
-                <div class="exp-item-card">
-                  <h4 class="exp-content-time">Mar. 2020- Jun. 2020</h4>
-                  <!-- <img src="../../assets/tea3.jpg" alt="" /> -->
-                </div>
-                <h3 class="exp-content-title">Part-time Math tutor</h3>
-                <p class="exp-content-p"></p>
-              </div>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -277,120 +253,140 @@
   <!--Project Section-->
   <section class="project" id="project">
     <div class="max-width">
+      <h2 class="title"><div class="text">PROJECTS</div></h2>
       <div class="project-content">
-        <h2 class="title"><div class="text">Project</div></h2>
-      </div>
-      <!-- <div class="slick-slider">
-        <li>
-          <div class="full-card">
-            <div class="font-card robotoslab-card">
-              <h3 class="font-card-title">Line 醫療查詢機器人</h3>
-              <p class="font-card-text"></p>
-              <a href="#" class="explore-button" onclick="return false">zoom</a>
-            </div>
+        <!-- 選單 -->
+        <div class="text-center my-8">
+          <ul class="list-inline flex">
+            <li
+              class="list-inline-item flex-1"
+              v-for="category in categories"
+              :key="category"
+              @click="selectCategory(category)"
+            >
+              <button
+                class="btn btn-primary focus-style"
+                :class="{ active: category === selectCategory }"
+              >
+                {{ category }}
+              </button>
+            </li>
+          </ul>
+        </div>
 
-            <div class="font-card roboto-card">
-              <h3 class="font-card-title">顯示地圖位置</h3>
-              <p class="font-card-text"></p>
-              <a href="#" class="explore-button" onclick="return false">zoom</a>
-            </div>
-
-            <div class="font-description">
-              <h2 class="font--robotoslab">
-                Ruby<span class="font--roboto">+Ruby on Rails</span>
-              </h2>
-              <p class="font--roboto">
-                一開始的想法是說，現在人主要溝通訊息都是用LINE，
-                那如果把一些查詢功能結合到LINE上面，
-                是不是會比下載APP或是網頁搜尋還來的直覺，
-                然後我們一開始是參考"卡米狗"的LINE機器人去做參考的。
-              </p>
-            </div>
-          </div>
-        </li>
-
-        <li>
-          <div class="full-card">
-            <div class="font-card lobster-card">
-              <h3 class="font-card-title">關鍵字查詢機器人</h3>
-              <p class="font-card-text"></p>
-              <a href="#" class="explore-button" onclick="return false">zoom</a>
-            </div>
-
-            <div class="font-card cabin-card">
-              <h3 class="font-card-title">SDM 問卷機器人</h3>
-              <p class="font-card-text"></p>
-              <a href="#" class="explore-button" onclick="return false">zoom</a>
-            </div>
-
-            <div class="font-description">
-              <h2 class="font--lobster">
-                Python<span class="font--cabin">+Django</span>
-              </h2>
-              <p class="font--cabin">
-                大三下學期的專題使用的是Python來撰寫機器人，
-                因為發現Python有許多方便之處， 結合Django 與 MicroSoft QnA Maker
-                做一個問答型機器人， 最後搭配Google
-                試算表，讓使用者輸入的話都記錄下來， 以便後台人員觀看及分析。
-              </p>
+        <!-- 項目列表 -->
+        <div :class="gridClass">
+          <div
+            class="mb-4 p-4 text-center"
+            v-for="project in filteredProjects"
+            :key="project.id"
+          >
+            <div class="project-card p-8">
+              <img
+                :src="project.thumbnail"
+                class="card-img-top"
+                alt="Project Thumbnail"
+              />
+              <div class="card-body">
+                <h5 class="card-title font-bold text-blue-600">
+                  {{ project.title }}
+                </h5>
+                <p class="card-text text-gray-700">{{ project.description }}</p>
+              </div>
             </div>
           </div>
-        </li>
-
-        <li>
-          <div class="full-card">
-            <div class="font-card eczar-card">
-              <h3 class="font-card-title">新光醫院介面維護</h3>
-              <p class="font-card-text"></p>
-              <a href="#" class="explore-button" onclick="return false">zoom</a>
-            </div>
-
-            <div class="font-card gentium-card">
-              <h3 class="font-card-title">新光醫院介面統計</h3>
-              <p class="font-card-text"></p>
-              <a href="#" class="explore-button" onclick="return false">zoom</a>
-            </div>
-
-            <div class="font-description">
-              <h2 class="font--eczar">
-                C#<span class="font--gentium">+jQuery+SQL</span>
-              </h2>
-              <p class="font--gentium">
-                這個專案是我在新光醫院當實習生接到的案子，
-                內容是要做出一個可以針對使用著提出的問題或是BUG進行篩選與分類，
-                第一次接觸到比較大的專案，
-                藉由同事稍講解一些架構，我也可以很快地把頁面及需求完成。
-              </p>
-            </div>
-          </div>
-        </li>
-      </div> -->
-      <Carousel2 />
-    </div>
-  </section>
-
-  <!--Contect Section-->
-  <section class="contect" id="contect">
-    <div class="max-width">
-      <div class="contect-content">
-        <h2 class="title"><div class="text">Contect Me</div></h2>
-      </div>
-      <div class="contect-info">
-        <h4 class="contect-title my-24">Your Name</h4>
-        <input class="contect-input" type="text" />
-        <textarea
-          name="content"
-          cols="20"
-          rows="3"
-          class="contect-context"
-          style="display: none"
-        ></textarea>
-        <div class="submit my-24" onclick="sendEmail()">
-          <i class="fal fa-chevron-circle-right"></i>
         </div>
       </div>
     </div>
-    <div class="contect-social">
+  </section>
+
+  <!-- Contact Section -->
+  <section class="Contact" id="Contact">
+    <div class="max-width">
+      <h2 class="title"><div class="text">CONTACT</div></h2>
+      <div class="mt-8 flex justify-around shadow-lg rounded-lg">
+        <!-- Phone -->
+        <div class="flex items-center space-x-4">
+          <div class="flex-shrink-0">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"
+              />
+            </svg>
+          </div>
+          <div>
+            <p class="phone">+1 949-599-5656</p>
+            <p class="phone-time">Mon-Fri, PDT 9am-9pm</p>
+          </div>
+        </div>
+        <!-- Email -->
+        <div class="flex items-center space-x-4">
+          <div class="flex-shrink-0">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              />
+            </svg>
+          </div>
+          <div>
+            <p class="email">bnbn870829@gmail.com</p>
+            <p class="email-text">Email</p>
+          </div>
+        </div>
+        <!-- Address -->
+        <div class="flex items-center space-x-4">
+          <div class="flex-shrink-0">
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 2C8.134 2 5 5.134 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.866-3.134-7-7-7z"
+              ></path>
+            </svg>
+          </div>
+          <div>
+            <p class="location">Irvine, CA 92614, US</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- <footer class="footer">
+      <input type="button" class="goTop">
+    </footer> -->
+  <footer>
+    <div class="copyright text-center">
+      <p class="copyright-text">
+        &copy; Copyright 2024 SungChian Wen | Created by SungChian Wen
+      </p>
+    </div>
+    <div class="Contact-social">
       <div class="box">
         <ul class="social-list">
           <li class="social-item">
@@ -422,12 +418,6 @@
         </ul>
       </div>
     </div>
-  </section>
-
-  <!-- <footer class="footer">
-      <input type="button" class="goTop">
-    </footer> -->
-  <footer>
     <div class="scroll">
       <a href="#home">
         <i class="fal fa-chevron-circle-up"></i>
@@ -437,27 +427,285 @@
 </template>
 
 <script>
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, computed, onMounted, onUnmounted, nextTick } from "vue";
 import VueTyper from "vue3-typer";
 import "vue3-typer/dist/vue-typer.css";
 import Carousel3 from "../widgets/carousel3.vue";
 import Carousel2 from "../widgets/carousel2.vue";
+import skillComponent from "../widgets/skill-component.vue";
 // import { useRoute } from "vue-router";
 // import { useAuthStore } from "@/store/auth/store";
 
 export default {
   name: "LayoutDefault",
-  components: { VueTyper, Carousel3, Carousel2 },
+  components: { VueTyper, Carousel3, Carousel2, skillComponent },
   setup() {
     const isSticky = ref(false);
     const isScrollUp = ref(false);
     const lastPos = ref(0);
+
+    const intro = ref(
+      "As a natural leader and problem-solving expert, I've guided a team to a top-five finish in a graduate project competition. I excel at resolving team conflicts and inspiring each member to reach their full potential, ensuring smooth project completion. I believe my unique combination of skills and cross-domain experience will bring fresh perspectives and innovative thinking to your team. I'm eager to align my analytical prowess with your business objectives, fostering a data-driven decision-making culture that propels growth and innovation. Together, we can transform data into insights, and insights into action, unlocking new opportunities for your enterprise."
+    );
+
+    const certificates = ref([
+      {
+        href: "https://www.coursera.org/account/accomplishments/verify/J4KT926GJSYV",
+        imgSrc: "src/assets/CERTIFICATE_sql_for_datascience.jpeg",
+        alt: "Certificate 1",
+        name: "SQL for DataScience",
+        skills: ["SQLite", "Data Science", "Data Analysis"],
+      },
+      {
+        href: "https://www.coursera.org/account/accomplishments/verify/3A4HNSM5XRQ4",
+        imgSrc: "src/assets/CERTIFICATE_Data_Wrangling.jpeg",
+        alt: "Certificate 2",
+        name: "Data Wrangling, Analysis and AB Testing with SQL",
+        skills: [
+          "A/B Testing",
+          "Predictive Analytics",
+          "Query String",
+          "Data Analysis",
+          "SQL",
+        ],
+      },
+      {
+        href: "https://www.coursera.org/account/accomplishments/verify/46UWAUXD9T4D",
+        imgSrc: "src/assets/CERTIFICATE_Capstone.jpeg",
+        alt: "Certificate 3",
+        name: "SQL for Data Science Capstone Project",
+        skills: [
+          "Creating metrics",
+          "Exploratory Data Analysis",
+          "Data Analysis",
+          "Presentation Skills",
+          "SQL",
+        ],
+      },
+      {
+        href: "https://www.coursera.org/account/accomplishments/verify/ZN9DCJA2CVV8",
+        imgSrc:
+          "src/assets/CERTIFICATE_Distributed_Computing_with_Spark_SQL.jpeg",
+        alt: "Certificate 4",
+        name: "Distributed Computing with Spark SQL",
+        skills: ["Apache Spark", "Delta Lake", "Data Science", "SQL"],
+      },
+      {
+        href: "https://www.coursera.org/account/accomplishments/verify/SA2576JX2YXB",
+        imgSrc: "src/assets/CERTIFICATE_Customer_Analytics.jpeg",
+        alt: "Certificate 5",
+        name: "Customer Analytics",
+        skills: [
+          "Customer Analytics",
+          "Predictive Analytics",
+          "Marketing Performance Measurement And Management",
+          "Regression Analysis",
+        ],
+      },
+      {
+        href: "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/PwC%20US/N9wYyLnaWpizw8Yjy_PwC%20US_S3mMctR253k4zMKHG_1719428303519_completion_certificate.pdf",
+        imgSrc: "src/assets/PwC_Audit.jpg",
+        alt: "Certificate 6",
+        name: "PwC Audit Simulation",
+        skills: [
+          "Compliance Analysis",
+          "Quality Control Documentation",
+          "Issue Identification",
+          "Policy Interpretation",
+          "Process Flow Documentation",
+        ],
+      },
+    ]);
+
+    const skills = ref([
+      {
+        name: "Data Analytics & Data Science",
+        icon: "../../assets/data-science.png", // 請確保使用適當的圖標
+        categories: [
+          {
+            name: "Data Science",
+            items: [
+              "Statistics",
+              "Probability",
+              "Hypothesis Testing",
+              "A/B Testings",
+              "Data-driven Decision Making",
+              "Metrics Design",
+              "Root Cause Analysis",
+              "Predictive Analytics",
+              "Time Series Analytics",
+            ],
+          },
+          {
+            name: "Business Intelligence",
+            items: ["Tableau", "Power BI", "Google Sheets", "MS Excel"],
+          },
+          {
+            name: "Programming",
+            items: ["Python", "SQL", "R"],
+          },
+          {
+            name: "Tools & Libraries",
+            items: [
+              "Jupyter",
+              "Databricks",
+              "PySpark",
+              "SQLAlchemy",
+              "pandas",
+              "NumPy",
+              "SciPy",
+              "Plotly",
+              "Seaborn",
+              "Matplotlib",
+              "NLTK",
+              "Anaconda",
+            ],
+          },
+        ],
+      },
+      {
+        name: "Artificial Intelligence & Machine Learning",
+        icon: "../../assets/ai-ml.png", // 請確保使用適當的圖標
+        categories: [
+          {
+            name: "Machine Learning",
+            items: [
+              "Supervised Learning",
+              "Unsupervised Learning",
+              "Regression",
+              "Classification",
+              "Clustering",
+              "Dimensionality Reduction",
+            ],
+          },
+          {
+            name: "Deep Learning",
+            items: [
+              "Natural Language Processing (NLP)",
+              "Generative Adversarial Network (GAN)",
+              "Neural Network",
+            ],
+          },
+          {
+            name: "Programming",
+            items: [
+              "Python",
+              "SQL",
+              "Model Containerization",
+              "API Development",
+              "Flask",
+              "Flask-RESTful",
+            ],
+          },
+          {
+            name: "Tools & Libraries",
+            items: [
+              "Scikit-learn",
+              "XGBoost",
+              "LightGBM",
+              "CatBoost",
+              "Keras",
+              "NLTK",
+              "TensorFlow",
+              "Feature Engineering",
+              "MLflow",
+              "MLOps",
+            ],
+          },
+        ],
+      },
+      {
+        name: "Computer Science & Developing",
+        icon: "../../assets/computer-science.png", // 請確保使用適當的圖標
+        categories: [
+          {
+            name: "Programming",
+            items: [
+              "Python",
+              "Data Structures & Algorithms",
+              "R",
+              "Bash",
+              "HTML",
+              "JavaScript",
+              "CSS",
+              "Markdown",
+              "Shell Scripting",
+              "Flask",
+              "API Development",
+            ],
+          },
+          {
+            name: "Cloud Computing",
+            items: ["AWS", "GCP", "Azure"],
+          },
+          {
+            name: "DevOps",
+            items: [
+              "Linux",
+              "Git",
+              "Docker",
+              "RegEx",
+              "LaTex",
+              "Agile Development",
+              "CI/CD",
+            ],
+          },
+        ],
+      },
+    ]);
+
+    const jobs = ref([
+      {
+        company: "Avanath Real Estate",
+        location: "Irvine, CA",
+        position: "Student Data Analyst",
+        duration: "01/2024 – 06/2024",
+        responsibilities: [
+          "Collaborated with Senior Team Lead to build models and implement strategies for real estate performance measurement and analytics, enhancing operational efficiency and driving cost savings.",
+          "Organized, cleaned, manipulated, and labeled various datasets to support financial data analysis and budgeting processes, using Python.",
+          "Created interactive dashboards in Tableau to visualize key metrics, providing stakeholders with investment insights to enhance real estate operations and spur business growth.",
+          "Developed predictive analytics models that leverage historical data and trends to improve forecasting accuracy, identifying potential changes in external factors affecting real estate performance.",
+          "Leveraged advanced Excel functions including VLOOKUP, pivot tables, and macros to streamline data processing, and perform complex statistical analyses, resulting in a 30% reduction in reporting time.",
+        ],
+      },
+      {
+        company: "Trillions digital co., ltd.",
+        location: "Taichung, TW",
+        position: "Frontend Developer",
+        duration: "02/2022 – 08/2022",
+        responsibilities: [
+          "Led the design and execution of a sports information website project using Vue3, incorporating SEO best practices to enhance site visibility and search engine ranking.",
+          "Migrated an existing project from Vue Cli to Vite, improving overall development efficiency by 30%.",
+          "Collaborated cross-functionally with a manager and backend engineers to develop a Management System using Git, RESTful API, and Apache ECharts to visualize data.",
+        ],
+      },
+      {
+        company: "Shin Kong Wu Ho-Su Memorial Hospital",
+        location: "Taipei, TW",
+        position: "Data Engineer",
+        duration: "05/2020 – 02/2022",
+        responsibilities: [
+          "Utilized MSSQL to Extract, Transform, and Load (ETL) large-scale datasets, and leveraged RESTful API to integrate disparate data sources, ensuring seamless connectivity and driving project insights.",
+          "Assured consistent data quality by conducting regular audits, reducing reporting errors by 30%.",
+          "Communicated with medical professionals to gather and prioritize their requirements for the system, and ensured data collection and timely implementation to meet their needs.",
+        ],
+      },
+    ]);
+
+    const openJobIndex = ref(null);
+
+    const isJobOpen = computed(() => (index) => openJobIndex.value === index);
+
+    const toggleJob = (index) => {
+      openJobIndex.value = openJobIndex.value === index ? null : index;
+    };
+
     const scrollHandler = (e) => {
       if (window.scrollY > 50) {
         isSticky.value = true;
         let currentPos = window.scrollY;
         if (currentPos > lastPos.value) {
-          isScrollUp.value = true
+          isScrollUp.value = true;
         } else {
           isScrollUp.value = false;
         }
@@ -466,17 +714,143 @@ export default {
         isSticky.value = false;
       }
     };
+
+    const getMaxHeight = (index) => {
+      if (!contentHeights.value[index]) {
+        nextTick(() => {
+          const element = document.getElementById(`collapse${index}`);
+          if (element) {
+            contentHeights.value[index] = `${element.scrollHeight}px`;
+          }
+        });
+        return "auto";
+      }
+      return contentHeights.value[index];
+    };
+
+    const contentHeights = ref({});
+
+    const categories = ref([
+      "All",
+      "Business Analysis",
+      "Data Analysis",
+      "Machine Learning",
+    ]);
+    const selectedCategory = ref("All");
+    // for focus
+    const projects = ref([
+      {
+        id: 1,
+        category: ["All", "Business Analysis"],
+        thumbnail: "src/assets/CERTIFICATE_sql_for_datascience.jpeg",
+        title: "Project 1",
+        description: "Description 1",
+      },
+      {
+        id: 2,
+        category: ["All"],
+        thumbnail: "src/assets/CERTIFICATE_sql_for_datascience.jpeg",
+        title: "Project 2",
+        description: "Description 2",
+      },
+      {
+        id: 3,
+        category: ["All"],
+        thumbnail: "src/assets/CERTIFICATE_sql_for_datascience.jpeg",
+        title: "Project 3",
+        description: "Description 3",
+      },
+      {
+        id: 4,
+        category: ["All"],
+        thumbnail: "src/assets/CERTIFICATE_sql_for_datascience.jpeg",
+        title: "Project 4",
+        description: "Description 4",
+      },
+      {
+        id: 5,
+        category: ["All"],
+        thumbnail: "src/assets/CERTIFICATE_sql_for_datascience.jpeg",
+        title: "Project 5",
+        description: "Description 5",
+      },
+      {
+        id: 6,
+        category: ["All"],
+        thumbnail: "src/assets/CERTIFICATE_sql_for_datascience.jpeg",
+        title: "Project 6",
+        description: "Description 6",
+      },
+      {
+        id: 7,
+        category: ["Machine Learning"],
+        thumbnail: "src/assets/CERTIFICATE_sql_for_datascience.jpeg",
+        title: "Project 6",
+        description: "Description 6",
+      },
+      {
+        id: 8,
+        category: ["Machine Learning"],
+        thumbnail: "src/assets/CERTIFICATE_sql_for_datascience.jpeg",
+        title: "Project 6",
+        description: "Description 6",
+      },
+      {
+        id: 9,
+        category: ["Machine Learning"],
+        thumbnail: "src/assets/CERTIFICATE_sql_for_datascience.jpeg",
+        title: "Project 6",
+        description: "Description 6",
+      },
+    ]);
+
+    const filteredProjects = computed(() => {
+      return projects.value.filter((project) =>
+        project.category.includes(selectedCategory.value)
+      );
+    });
+
+    const gridClass = computed(() => {
+      const projectCount = filteredProjects.value.length;
+      const rows = Math.ceil(projectCount / 3); // 每行3個項目
+      return `grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-rows-${rows}`;
+    });
+
+    const selectCategory = (category) => {
+      selectedCategory.value = category;
+    };
+
     onMounted(() => {
       window.addEventListener("scroll", scrollHandler);
     }),
-    onUnmounted(() => {
-      window.removeEventListener("scroll", scrollHandler, true);
-    });
+      onUnmounted(() => {
+        window.removeEventListener("scroll", scrollHandler, true);
+      });
 
     return {
       lastPos,
       isSticky,
       isScrollUp,
+      //intro
+      intro,
+      // certification
+      certificates,
+      // skills
+      skills,
+      // experience
+      jobs,
+      openJobIndex,
+      isJobOpen,
+      toggleJob,
+      getMaxHeight,
+      contentHeights,
+      // projects
+      categories,
+      selectedCategory,
+      projects,
+      filteredProjects,
+      selectCategory,
+      gridClass,
     };
   },
 };

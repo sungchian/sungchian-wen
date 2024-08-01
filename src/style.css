@@ -11,6 +11,7 @@
     --black: #000;
     --black_light: #3A3A3A;
     --white: #FFF;
+    --gray: #DDDDDD;
 }
 
 *{
@@ -44,7 +45,7 @@ body{
 
 section{
     /* margin-bottom: 100px; */
-    padding: 100px 0;
+    padding: 60px 0;
     /* min-width: 1500px; */
 }
 
@@ -315,6 +316,10 @@ footer .scroll i{
     background: var(--black_light);
 }
 
+.about .title {
+    margin-bottom: 2rem;
+}
+
 .about .title .text{
     background-color: var(--black_light);
 }
@@ -349,6 +354,8 @@ footer .scroll i{
 }
 .about .about-content .right p{
     text-align: justify;
+    letter-spacing: 2px;
+    color: var(--gray);
 }
 .about .about-content .right a{
     display: inline-block;
@@ -367,7 +374,80 @@ footer .scroll i{
     background: none;
 }
 
+/*================================ certificates section style ================================*/
+.certificates {
+    background-color: var(--gray);
+}
 
+.certificates .title {
+    margin-bottom: 2rem;
+}
+
+.certificates .title .text {
+    color: var(--black);
+    background-color: var(--gray);
+}
+
+.certificates-row {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.certificate-item {
+    text-align: center;
+    flex: 1 1 20%; /* 讓每個項目佔一行的20%，根據需要調整 */
+    margin: 10px;
+}
+
+.certificate-image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.certificate-img {
+    width: 100%;  /* 圖片寬度佔滿容器 */
+    height: 200px;  /* 固定高度，你可以根據需要調整這個值 */
+    object-fit: contain;  /* 保持圖片比例，裁剪多餘部分 */
+    object-position: center;  /* 確保圖片居中顯示 */
+}
+
+.certificate-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7); /* 半透明黑色背景 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.certificate-skill {
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  .certificate-image-container:hover .certificate-overlay {
+    opacity: 1;
+  }
+  
+  .certificate-name {
+    margin-top: 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
+  
+  .certificate-skill {
+    color: var(--gold_light);
+    font-size: small;
+  }
+  
 
 /*================================ skill section style ================================*/
 .skill{
@@ -387,323 +467,111 @@ footer .scroll i{
     padding: 50px;
 }
 
-.skill-group{
-    display: flex;
-    justify-content: space-between;
-}
-
-/* .skill-content{
-    background: url('skill_bg.jpg');
-} */
-
-.skill-group .skill-list{
-    flex: 1;
-    display: inline-block;
-    margin: 0 auto;
-    padding: 20px 50px;
-    width: 20%;
-}
-
 .skill-content .title .text{
-    /* background-color: rgba(0, 0, 0, .3); */
     background-color: black;
 }
 
-.skill-item .skill-name, .skill-item .skill-p{
-    /* display: block; */
-    text-align: center;
-    flex-wrap: nowrap;
-}
-
-.skill-item .skill-name, .skill-item .skill-p ul li{
-    padding: 10px 0;
-    font-size: 20px;
-}
-
-
-.skill-item .skill-name{
-    position: relative;
-}
-
-.skill-item .skill-name::after{
-    content: "";
-    position: absolute;
-    width: 80%;
-    height: 3px;
-    background-color: var(--gold);
-    top: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.skill-item .skill-group{
-    position: relative;
-}
-
-.skill-item .skill-img{
-    position: relative;
-    width: 150px;
-    height: 150px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.skill-item .skill-subImg{
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
-}
-
 /*================================ experience section style ================================*/
-.exp{
-    background: var(--black_light);
-    /* display: flex; */
-    position: relative;
-    color: var(--white);
-    /* height: 1050px; */
+.exp {
+    background-color: #f8f9fa;
 }
 
-.exp-inner .exp-list{
-    display: flex;
-    flex-wrap: wrap;
+.card-container {
+    margin-top: 2rem;
 }
 
-.exp-inner .exp-list .exp-item{
-    width: 50%;
-    padding: 0 10px;
-    /* margin-bottom: -100px ; */
+.card-container .card-sub-container {
+    border: 1px solid var(--gold_light);
+    padding: 1rem;
+    margin: 1rem 0;
+    
+}
+    .card-container .card-sub-container .card :hover{
+        color: var(--gold);
+        transition: all 0.5s ease;
+    }
+    .card-container .card-sub-container .focus-exp{
+        color: var(--gold);
+    }
+
+.card {
+    width: 100%;
 }
 
-.exp-inner .exp-list .exp-item:nth-child(2n){
-    margin-top: 150px;
-    text-align: right;
-    justify-content: flex-start !important;
+.card .card-header {
+    margin: 1rem 0;
 }
 
-.exp-item-content{
-    background: var(--black_light);
-    box-shadow: 15px 15px 30px 1px rgba(0, 0, 0, 0.3);
-}
-
-.exp-inner .exp-list .exp-item:nth-child(2n) .exp-item-card {
-    justify-content: end;
-}
-
-.exp-content .title .text{
-    background-color: var(--black_light);
-}
-
-.exp-content .main-line{
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.exp-item-content h4{
-    display: inline-block;
-}
-
-.exp-item-content img{
-    position: relative;
-    display: inline-block;
-    max-width: 50%;
-    max-height: 65px;
-    margin-left: 5%;
-    top: 20px;
-}
-
-.exp-content .exp-content-title{
-    margin: 0;
-    font-size: 25px;
+.btn-link {
     color: var(--gold_light);
+    font-weight: 600;
 }
 
-.exp-content .exp-item-card{
-    padding: 30px 0;
-    display: flex;
-    align-items: baseline;
+.btn-link:hover, .btn-link:focus {
+    text-decoration: none;
+}
+
+.collapse-content {
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.card-body {
+    transition: opacity 0.3s ease;
+}
+
+.card-body .text-muted {
+    margin-bottom: 1rem;
+}
+
+.card-body ul li {
+    letter-spacing: 0.1rem;
+}
+
+.card-body ul li::before {
+    content: "• ";
+    color: var(--gold_light);
+    font-weight: bold;
+}
+
+.collapse-content[style*="max-height: 0px"] .card-body {
+    opacity: 0;
+}
+
+.collapse-content:not([style*="max-height: 0px"]) .card-body {
+    opacity: 1;
 }
 
 /*================================ project section style ================================*/
 .project{
     background: var(--black);
-    /* background: var(--white); */
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-    display: flex;
-}
-
-.project-content .title .text{
-    background-color: var(--black)
-}
-
-.project .carousel__viewport {
     color: white;
 }
 
-.bx-viewport {
-    overflow: hidden;
-  }
-  
-.bx-pager {
-margin-top: 20px;
-display: flex;
-justify-content: center;
+.project .title .text{
+    background-color: var(--black)
 }
 
-
-
-.bx-wrapper .bx-pager.bx-default-pager a {
-background: rgb(172, 69, 69);
-text-indent: -9999px;
-display: block;
-width: 15px;
-height: 15px;
-margin: 0 10px;
-outline: 0;
-border-radius: 10px;
-box-shadow: 0 3px 6px rgba(255, 255, 255, 0.3);
-}
-  
-.bx-wrapper .bx-pager.bx-default-pager a:hover,
-.bx-wrapper .bx-pager.bx-default-pager a.active {
-background: rgba(0, 0, 0, 0.7);
-}
-  
-.full-card {
-margin: 0 auto;
-display: flex;
-justify-content: center;
-align-items: stretch;
-padding: 20px;
-/* new */
-height: auto;
-/* height: 80vh; */
-/* max-height: 600px; */
-background: var(--black);
-width: 90%;
-height: 50vh;
-max-width: 1300px;
-box-shadow: 0px 10px 10px -10px rgba(255, 255, 255, 0.9), 0px 10px 10px -10px rgba(255, 255, 255, 0.3), 0 10px 0px -10px rgba(255, 255, 255, 0.1);
+.project-content .list-inline-item {
+    /* border-bottom: 1px solid var(--gold); */
 }
 
-.font-card {
-    position: relative;
-    width: 28%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    background: linear-gradient(45deg, #9fbee6 0%, #dfeaee 100%);
-    padding: 20px 20px;
-    margin: 0 15px;
-    text-align: center;
-    box-shadow: 0 15px 20px -15px rgba(255, 255, 255, 0.3), 0 55px 50px -35px rgba(255, 255, 255, 0.3);
-    transition: box-shadow 0.3s, transform 0.3s;
-    transition-delay: 0.15s;
+.focus-style:focus,
+.focus-style.active {
+    border-bottom: 2px solid var(--gold); /* 你可以根據需要調整顏色和粗細 */
+    font-weight: bold;
 }
 
-.font-card.hovered-card {
-    box-shadow: 0 5px 3px -5px rgba(0, 0, 0, 0.3), 0 2px 8px -5px rgba(0, 0, 0, 0.3);
-    transform: translateY(-2px);
-}
-
-.font-card img {
-    overflow: hidden;
-}
-
-.font-card .font-card-title{
-    opacity: 0;
-    width: 100%;
-    transition: all .3s ease-in-out;
-    border-radius: 5px;
-    color: var(--white);
-    background-color: var(--gold);
-}
-
-.font-card .font-card-text {
-    line-height: 1.4;
-}
-
-.font-description {
-    padding: 0 30px;
-    margin: 15px;
-    margin-left: 3rem;
-    width: 44%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-}
-.font-description h2 {
-    color: var(--gold);
-}
-
-.font-description h2::before {
-    content: "";
-    display: none;
-}
-
-.font-description h2 span {
-    color: var(--gold_light);
-}
-.font-description p {
-    padding-left: 15px;
-    color: var(--white);
-    line-height: 1.8;
-}
-.font-description p:before {
-    content: "—";
-    margin-left: -15px;
-    margin-right: 4px;
-}
-
-.explore-button {
-    font-size: 0.1em;
-    background: var(--gold);
-    /* width: 30%; */
-    color: var(--white);
-    display: inline-block;
-    padding: 1em;
-    margin-top: 2em;
-    border: solid 3px var(--gold);
-    border-radius: 5em;
-    text-transform: uppercase;
-    text-decoration: none;
-    letter-spacing: 1em;
-    box-shadow: 0 15px 20px -10px rgba(0, 0, 0, 0.3);
-    transition: color 0.6s, box-shadow 0.3s, transform 0.3s;
-}
-.explore-button:hover {
-    box-shadow: 0 3px 5px -5px rgba(0, 0, 0, 0.3);
-    transform: translateY(-1px);
-    color: #6f6f6f;
-}
-
-.font-description{
-    user-select: none;
-}
-
-/*================================ contect section style ================================*/
-.contect{
-    height: 1000px;
+/*================================ Contact section style ================================*/
+.Contact{
     background: var(--black_light);
-    background-image: url('./assets/contect-circle.svg');
-    background-repeat: no-repeat;
-    background-position: 50% 80%;
-    text-align: center;
-    position: relative;
-    
 }
 
-.contect .title .text{
+.Contact .title .text{
     background-color: var(--black_light);
 }
 
-.contect .contect-info{
+.Contact .Contact-info{
     position: absolute;
     display: block;
     top: 50%;
@@ -713,60 +581,43 @@ box-shadow: 0px 10px 10px -10px rgba(255, 255, 255, 0.9), 0px 10px 10px -10px rg
     transition: all 0.3s ease;
 }
 
-.contect .contect-info .contect-title{
+.Contact .Contact-info .Contact-title{
     font-size: 30px;
     font-weight: 400;
     color: var(--gold);
 }
 
-.contect .contect-info input, .contect .contect-info textarea{
-    margin-top: 100px;
-    font-size: 25px;
-    border: 0;  /* 去除未選中狀態邊框 */
-    outline: none; /* 去除選中狀態邊框 */
-    background-color: rgba(0, 0, 0, 0); /* 透明背景 */
-    border-bottom: 1px solid var(--white);
+.Contact svg {
     color: var(--white);
-    text-align: center;
 }
 
-.contect .contect-info .submit i{
-    font-size: 40px;
-    color: var(--white);
-    cursor: pointer;
+.Contact .phone {
+    color: var(--gold);
+}
+.Contact .phone-time {
+    color: var(--gold_light);
 }
 
-.robotoslab-card {
-    background: url('./assets/linebot01.jpg') no-repeat center center;
-    background-size: cover;
+.Contact .email {
+    color: var(--gold);
+}
+.Contact .email-text {
+    color: var(--gold_light);
+}
+
+.Contact .location {
+    color: var(--gold);
+}
+
+/*================================ Footer style ================================*/
+.copyright {
+    background-color: var(--black);
+}
+    .copyright-text {
+        color: var(--gold_light);
     }
-    
-.roboto-card {
-    background: url('./assets/linebot02.jpg') no-repeat center center;
-    background-size: cover;
-}
 
-.lobster-card {
-    background: url('./assets/linebot1.PNG') no-repeat center center;
-    background-size: cover;
-}
-
-.cabin-card {
-    background: url('./assets/linebot2.PNG') no-repeat center center;
-    background-size: cover;
-}
-
-.eczar-card {
-    background: url('./assets/skh-project1.PNG') no-repeat center center;
-    background-size: cover;
-}
-
-.gentium-card {
-    background: url('./assets/skh-project2.PNG') no-repeat center center;
-    background-size: cover;
-}
-
-.contect-social{
+.Contact-social{
     background-color: gray;
     background-size: cover;
     position: fixed;
@@ -778,7 +629,7 @@ box-shadow: 0px 10px 10px -10px rgba(255, 255, 255, 0.9), 0px 10px 10px -10px rg
     box-shadow: 0 0 30px 30px gray;
 }
 
-.contect-social::before{
+.Contact-social::before{
     content: "";
     position: absolute;
     top: 0;
@@ -800,10 +651,9 @@ box-shadow: 0px 10px 10px -10px rgba(255, 255, 255, 0.9), 0px 10px 10px -10px rg
     margin-top: 20px;
 }
 
-.contect-social .social-item i{
+.Contact-social .social-item i{
     color: var(--white);
 }
-
 
 
 /*================================ RWD style ================================*/
@@ -874,11 +724,11 @@ box-shadow: 0px 10px 10px -10px rgba(255, 255, 255, 0.9), 0px 10px 10px -10px rg
         width: 100%;
     }
 
-    .contect .contect-info .submit{
+    .Contact .Contact-info .submit{
         margin-top: 50px;
     }
 
-    .contect .contect-info input{
+    .Contact .Contact-info input{
         margin-top: 0;
     }
 
@@ -984,7 +834,7 @@ box-shadow: 0px 10px 10px -10px rgba(255, 255, 255, 0.9), 0px 10px 10px -10px rg
         font-size: 20px;
     }
 
-    .contect-social{
+    .Contact-social{
         position: absolute;
         top: auto;
         bottom: 0;
@@ -996,7 +846,7 @@ box-shadow: 0px 10px 10px -10px rgba(255, 255, 255, 0.9), 0px 10px 10px -10px rg
         
     }
 
-    .contect-social .social-item{
+    .Contact-social .social-item{
         display: inline-block;
     }
 
