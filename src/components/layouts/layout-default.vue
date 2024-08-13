@@ -281,19 +281,23 @@
             v-for="project in filteredProjects"
             :key="project.id"
           >
-            <div class="project-card p-8">
-              <img
-                :src="project.thumbnail"
-                class="card-img-top"
-                alt="Project Thumbnail"
-              />
-              <div class="card-body">
-                <h5 class="card-title font-bold text-blue-600">
-                  {{ project.title }}
-                </h5>
-                <p class="card-text text-gray-700">{{ project.description }}</p>
+            <a :href=project.href target="_blank">
+              <div class="project-card p-8">
+                <img
+                  :src="project.thumbnail"
+                  class="card-img-top"
+                  alt="Project Thumbnail"
+                />
+                <div class="card-body">
+                  <h5 class="card-title font-bold">
+                    {{ project.title }}
+                  </h5>
+                  <p class="card-text text-gray-700">
+                    {{ project.description }}
+                  </p>
+                </div>
               </div>
-            </div>
+            </a>
           </div>
         </div>
       </div>
@@ -451,14 +455,14 @@ export default {
     const certificates = ref([
       {
         href: "https://www.coursera.org/account/accomplishments/verify/J4KT926GJSYV",
-        imgSrc: "src/assets/CERTIFICATE_sql_for_datascience.jpeg",
+        imgSrc: "src/assets/certificate/CERTIFICATE_sql_for_datascience.jpeg",
         alt: "Certificate 1",
         name: "SQL for DataScience",
         skills: ["SQLite", "Data Science", "Data Analysis"],
       },
       {
         href: "https://www.coursera.org/account/accomplishments/verify/3A4HNSM5XRQ4",
-        imgSrc: "src/assets/CERTIFICATE_Data_Wrangling.jpeg",
+        imgSrc: "src/assets/certificate/CERTIFICATE_Data_Wrangling.jpeg",
         alt: "Certificate 2",
         name: "Data Wrangling, Analysis and AB Testing with SQL",
         skills: [
@@ -471,7 +475,7 @@ export default {
       },
       {
         href: "https://www.coursera.org/account/accomplishments/verify/46UWAUXD9T4D",
-        imgSrc: "src/assets/CERTIFICATE_Capstone.jpeg",
+        imgSrc: "src/assets/certificate/CERTIFICATE_Capstone.jpeg",
         alt: "Certificate 3",
         name: "SQL for Data Science Capstone Project",
         skills: [
@@ -485,14 +489,14 @@ export default {
       {
         href: "https://www.coursera.org/account/accomplishments/verify/ZN9DCJA2CVV8",
         imgSrc:
-          "src/assets/CERTIFICATE_Distributed_Computing_with_Spark_SQL.jpeg",
+          "src/assets/certificate/CERTIFICATE_Distributed_Computing_with_Spark_SQL.jpeg",
         alt: "Certificate 4",
         name: "Distributed Computing with Spark SQL",
         skills: ["Apache Spark", "Delta Lake", "Data Science", "SQL"],
       },
       {
         href: "https://www.coursera.org/account/accomplishments/verify/SA2576JX2YXB",
-        imgSrc: "src/assets/CERTIFICATE_Customer_Analytics.jpeg",
+        imgSrc: "src/assets/certificate/CERTIFICATE_Customer_Analytics.jpeg",
         alt: "Certificate 5",
         name: "Customer Analytics",
         skills: [
@@ -504,7 +508,7 @@ export default {
       },
       {
         href: "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/PwC%20US/N9wYyLnaWpizw8Yjy_PwC%20US_S3mMctR253k4zMKHG_1719428303519_completion_certificate.pdf",
-        imgSrc: "src/assets/PwC_Audit.jpg",
+        imgSrc: "src/assets/certificate/PwC_Audit.jpg",
         alt: "Certificate 6",
         name: "PwC Audit Simulation",
         skills: [
@@ -513,6 +517,19 @@ export default {
           "Issue Identification",
           "Policy Interpretation",
           "Process Flow Documentation",
+        ],
+      },
+      {
+        href: "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/PwC%20Switzerland/a87GpgE6tiku7q3gu_PwC%20Switzerland_S3mMctR253k4zMKHG_1722988045499_completion_certificate.pdf",
+        imgSrc: "src/assets/certificate/PwC_powerbi.jpg",
+        alt: "Certificate 6",
+        name: "Power BI Job Simulation",
+        skills: [
+          "Microsoft Power BI",
+          "Insight and Actions",
+          "Defining KPIs",
+          "Self-Reflection",
+          "Calculating Measures",
         ],
       },
     ]);
@@ -735,70 +752,79 @@ export default {
       "Business Analysis",
       "Data Analysis",
       "Machine Learning",
+      "Data Visualization",
     ]);
     const selectedCategory = ref("All");
     // for focus
     const projects = ref([
       {
         id: 1,
-        category: ["All", "Business Analysis"],
-        thumbnail: "src/assets/CERTIFICATE_sql_for_datascience.jpeg",
-        title: "Project 1",
+        category: ["All", "Business Analysis", "Data Visualization"],
+        href: "https://public.tableau.com/app/profile/sung.chian.wen/viz/VisualizationofInsuranceCompanysDividendRatesvs_InterestRates/InsuranceCompanysDividendRatesvsInterestRates?publish=yes",
+        thumbnail: "src/assets/project/tableau-dividend-rates.jpg",
+        title: "Insurance Company's Dividend Rates vs. Interest Rates",
         description: "Description 1",
       },
       {
         id: 2,
-        category: ["All"],
-        thumbnail: "src/assets/CERTIFICATE_sql_for_datascience.jpeg",
-        title: "Project 2",
+        category: ["All", "Deep Learning", "Machine Learning"],
+        href: "https://github.com/sungchian/DeepLearning-Ruined-Fruit-Detection",
+        thumbnail: "src/assets/project/Fresh-and-Rotten-Classification.jpg",
+        title: "Fresh and Rotten Classification",
         description: "Description 2",
       },
       {
         id: 3,
         category: ["All"],
-        thumbnail: "src/assets/CERTIFICATE_sql_for_datascience.jpeg",
-        title: "Project 3",
+        href: "https://github.com/sungchian/Alzheimer-prediction",
+        thumbnail: "src/assets/project/alzheimer.jpg",
+        title: "Alzheimer Prediction",
         description: "Description 3",
       },
       {
         id: 4,
         category: ["All"],
-        thumbnail: "src/assets/CERTIFICATE_sql_for_datascience.jpeg",
-        title: "Project 4",
+        herf: "https://github.com/sungchian/loan-approval-prediction",
+        thumbnail: "src/assets/project/loan-prediction.jpg",
+        title: "Loan-approval Prediction",
         description: "Description 4",
       },
       {
         id: 5,
         category: ["All"],
-        thumbnail: "src/assets/CERTIFICATE_sql_for_datascience.jpeg",
-        title: "Project 5",
+        herf: "https://github.com/sungchian/collision-analysis",
+        thumbnail: "src/assets/project/collision.jpg",
+        title: "Collision Analysis",
         description: "Description 5",
       },
       {
         id: 6,
         category: ["All"],
-        thumbnail: "src/assets/CERTIFICATE_sql_for_datascience.jpeg",
-        title: "Project 6",
+        thumbnail: "src/assets/project/power-bi.jpg",
+        title: "Diversity & Inclusion",
         description: "Description 6",
       },
       {
         id: 7,
         category: ["Machine Learning"],
-        thumbnail: "src/assets/CERTIFICATE_sql_for_datascience.jpeg",
+        thumbnail:
+          "src/assets/certificate/CERTIFICATE_sql_for_datascience.jpeg",
         title: "Project 6",
         description: "Description 6",
       },
       {
         id: 8,
         category: ["Machine Learning"],
-        thumbnail: "src/assets/CERTIFICATE_sql_for_datascience.jpeg",
+        thumbnail:
+          "src/assets/certificate/CERTIFICATE_sql_for_datascience.jpeg",
         title: "Project 6",
         description: "Description 6",
       },
       {
         id: 9,
         category: ["Machine Learning"],
-        thumbnail: "src/assets/CERTIFICATE_sql_for_datascience.jpeg",
+        thumbnail:
+          "src/assets/certificate/CERTIFICATE_sql_for_datascience.jpeg",
         title: "Project 6",
         description: "Description 6",
       },
