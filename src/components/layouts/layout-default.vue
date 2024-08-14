@@ -453,7 +453,7 @@ export default {
     );
 
     // 使用 Vite 的动态导入功能
-    const images = import.meta.glob(
+    const images_certificate = import.meta.glob(
       "@/assets/certificate/*.{png,jpg,jpeg,svg}",
       { eager: true }
     );
@@ -470,7 +470,8 @@ export default {
       },
       {
         href: "https://www.coursera.org/account/accomplishments/verify/3A4HNSM5XRQ4",
-        imgSrc: "certificate/CERTIFICATE_Data_Wrangling.jpeg",
+        // imgSrc: "certificate/CERTIFICATE_Data_Wrangling.jpeg",
+        imgSrc: "",
         alt: "Certificate 2",
         name: "Data Wrangling, Analysis and AB Testing with SQL",
         skills: [
@@ -480,10 +481,12 @@ export default {
           "Data Analysis",
           "SQL",
         ],
+        keywordForMatching: "Data_Wrangling", // 用于匹配图片文件名的关键词
       },
       {
         href: "https://www.coursera.org/account/accomplishments/verify/46UWAUXD9T4D",
-        imgSrc: "../../assets/certificate/CERTIFICATE_Capstone.jpeg",
+        // imgSrc: "../../assets/certificate/CERTIFICATE_Capstone.jpeg",
+        imgSrc: "",
         alt: "Certificate 3",
         name: "SQL for Data Science Capstone Project",
         skills: [
@@ -493,18 +496,19 @@ export default {
           "Presentation Skills",
           "SQL",
         ],
+        keywordForMatching: "Capstone",
       },
       {
         href: "https://www.coursera.org/account/accomplishments/verify/ZN9DCJA2CVV8",
-        imgSrc:
-          "../../assets/certificate/CERTIFICATE_Distributed_Computing_with_Spark_SQL.jpeg",
+        imgSrc: "",
         alt: "Certificate 4",
         name: "Distributed Computing with Spark SQL",
         skills: ["Apache Spark", "Delta Lake", "Data Science", "SQL"],
+        keywordForMatching: "Distributed_Computing_with_Spark_SQL",
       },
       {
         href: "https://www.coursera.org/account/accomplishments/verify/SA2576JX2YXB",
-        imgSrc: "../../assets/certificate/CERTIFICATE_Customer_Analytics.jpeg",
+        imgSrc: "",
         alt: "Certificate 5",
         name: "Customer Analytics",
         skills: [
@@ -513,10 +517,11 @@ export default {
           "Marketing Performance Measurement And Management",
           "Regression Analysis",
         ],
+        keywordForMatching: "Customer_Analytics",
       },
       {
         href: "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/PwC%20US/N9wYyLnaWpizw8Yjy_PwC%20US_S3mMctR253k4zMKHG_1719428303519_completion_certificate.pdf",
-        imgSrc: "../../assets/certificate/PwC_Audit.jpg",
+        imgSrc: "",
         alt: "Certificate 6",
         name: "PwC Audit Simulation",
         skills: [
@@ -526,10 +531,11 @@ export default {
           "Policy Interpretation",
           "Process Flow Documentation",
         ],
+        keywordForMatching: "PwC_Audit",
       },
       {
         href: "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/PwC%20Switzerland/a87GpgE6tiku7q3gu_PwC%20Switzerland_S3mMctR253k4zMKHG_1722988045499_completion_certificate.pdf",
-        imgSrc: "../../assets/certificate/PwC_powerbi.jpg",
+        imgSrc: "",
         alt: "Certificate 6",
         name: "Power BI Job Simulation",
         skills: [
@@ -539,6 +545,7 @@ export default {
           "Self-Reflection",
           "Calculating Measures",
         ],
+        keywordForMatching: "PwC_powerbi",
       },
     ]);
 
@@ -874,18 +881,40 @@ export default {
       window.addEventListener("scroll", scrollHandler);
 
       // image
+      // for (const cert of certificates.value) {
+      //   const matchingImagePath = Object.keys(images_certificate).find((path) =>
+      //     path.toLowerCase().includes(cert.keywordForMatching)
+      //   );
+
+      //   if (matchingImagePath) {
+      //     try {
+      //       const module = await images_certificate[matchingImagePath];
+      //       cert.imgSrc = module.default;
+      //     } catch (error) {
+      //       console.error(`Error loading image for ${cert.name}:`, error);
+      //     }
+      //   } else {
+      //     console.warn(`No matching image found for ${cert.name}`);
+      //   }
+      // }
+      const imageModules = await Promise.all(
+        Object.values(images_certificate).map((importFunc) => importFunc)
+      );
+
+      const imageMap = Object.fromEntries(
+        Object.keys(images_certificate).map((path, index) => [
+          path,
+          imageModules[index].default,
+        ])
+      );
+
       for (const cert of certificates.value) {
-        const matchingImagePath = Object.keys(images).find((path) =>
-          path.toLowerCase().includes(cert.keywordForMatching)
+        const matchingImagePath = Object.keys(imageMap).find((path) =>
+          path.toLowerCase().includes(cert.keywordForMatching.toLowerCase())
         );
 
         if (matchingImagePath) {
-          try {
-            const module = await images[matchingImagePath];
-            cert.imgSrc = module.default;
-          } catch (error) {
-            console.error(`Error loading image for ${cert.name}:`, error);
-          }
+          cert.imgSrc = imageMap[matchingImagePath];
         } else {
           console.warn(`No matching image found for ${cert.name}`);
         }
@@ -901,7 +930,7 @@ export default {
       isScrollUp,
       //intro
       intro,
-      images,
+      images_certificate,
       // certification
       certificates,
       // skills
