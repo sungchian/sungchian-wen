@@ -453,8 +453,10 @@ export default {
     );
 
     const getImageUrl = (path) => {
-      return new URL(`../assets/${path}`, import.meta.url);
+      console.log(path);
+      return new URL(`../assets/${path}`, import.meta.url).href;
     };
+
 
     const certificates = ref([
       {
