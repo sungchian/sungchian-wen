@@ -1,5 +1,6 @@
 // place at : deploy/ghpages.js
 // you can see more info at https://github.com/tschaub/gh-pages
+
 const path = require('path');
 const ghpages = require('gh-pages');
 
