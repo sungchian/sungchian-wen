@@ -285,7 +285,7 @@
               <div class="project-card p-8">
                 <img
                   :src="project.thumbnail"
-                  class="card-img-top"
+                  class="card-img-top w-full object-cover h-48"
                   alt="Project Thumbnail"
                 />
                 <div class="card-body">
@@ -775,7 +775,7 @@ export default {
       },
       {
         id: 3,
-        category: ["All"],
+        category: ["All", "Machine Learning", "Business Analysis", "Data Analysis"],
         href: "https://github.com/sungchian/Alzheimer-prediction",
         thumbnail: "src/assets/project/alzheimer.jpg",
         title: "Alzheimer Prediction",
@@ -783,23 +783,24 @@ export default {
       },
       {
         id: 4,
-        category: ["All"],
-        herf: "https://github.com/sungchian/loan-approval-prediction",
+        category: ["All", "Machine Learning", "Business Analysis", "Data Analysis"],
+        href: "https://github.com/sungchian/loan-approval-prediction",
         thumbnail: "src/assets/project/loan-prediction.jpg",
         title: "Loan-approval Prediction",
         description: "Description 4",
       },
       {
         id: 5,
-        category: ["All"],
-        herf: "https://github.com/sungchian/collision-analysis",
+        category: ["All", "Business Analysis", "Data Analysis", "Data Visualization"],
+        href: "https://github.com/sungchian/collision-analysis",
         thumbnail: "src/assets/project/collision.jpg",
         title: "Collision Analysis",
         description: "Description 5",
       },
       {
         id: 6,
-        category: ["All"],
+        category: ["All", "Data Visualization"],
+        href: "https://github.com/sungchian/Diversity-and-Inclusion/tree/master",
         thumbnail: "src/assets/project/power-bi.jpg",
         title: "Diversity & Inclusion",
         description: "Description 6",
