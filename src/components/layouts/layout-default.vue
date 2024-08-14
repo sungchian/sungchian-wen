@@ -160,7 +160,7 @@
         >
           <a :href="cert.href" target="_blank">
             <div class="certificate-image-container">
-              <img :src="getImageUrl(cert.imgSrc)" :alt="cert.alt" class="certificate-img" />
+              <img :src="cert.imgSrc" :alt="cert.alt" class="certificate-img" />
               <div class="certificate-overlay flex flex-col">
                 <p
                   v-for="(skill, skillIndex) in cert.skills"
@@ -281,7 +281,7 @@
             v-for="project in filteredProjects"
             :key="project.id"
           >
-            <a :href=project.href target="_blank">
+            <a :href="project.href" target="_blank">
               <div class="project-card p-8">
                 <img
                   :src="project.thumbnail"
@@ -452,19 +452,21 @@ export default {
       "As a natural leader and problem-solving expert, I've guided a team to a top-five finish in a graduate project competition. I excel at resolving team conflicts and inspiring each member to reach their full potential, ensuring smooth project completion. I believe my unique combination of skills and cross-domain experience will bring fresh perspectives and innovative thinking to your team. I'm eager to align my analytical prowess with your business objectives, fostering a data-driven decision-making culture that propels growth and innovation. Together, we can transform data into insights, and insights into action, unlocking new opportunities for your enterprise."
     );
 
-    const getImageUrl = (path) => {
-      console.log(path);
-      return new URL(`../assets/${path}`, import.meta.url).href;
-    };
-
+    // 使用 Vite 的动态导入功能
+    const images = import.meta.glob(
+      "@/assets/certificate/*.{png,jpg,jpeg,svg}",
+      { eager: true }
+    );
 
     const certificates = ref([
       {
         href: "https://www.coursera.org/account/accomplishments/verify/J4KT926GJSYV",
-        imgSrc: "certificate/CERTIFICATE_sql_for_datascience.jpeg",
+        // imgSrc: "certificate/CERTIFICATE_sql_for_datascience.jpeg",
+        imgSrc: "",
         alt: "Certificate 1",
         name: "SQL for DataScience",
         skills: ["SQLite", "Data Science", "Data Analysis"],
+        keywordForMatching: "sql_for_datascience", // 用于匹配图片文件名的关键词
       },
       {
         href: "https://www.coursera.org/account/accomplishments/verify/3A4HNSM5XRQ4",
@@ -781,7 +783,12 @@ export default {
       },
       {
         id: 3,
-        category: ["All", "Machine Learning", "Business Analysis", "Data Analysis"],
+        category: [
+          "All",
+          "Machine Learning",
+          "Business Analysis",
+          "Data Analysis",
+        ],
         href: "https://github.com/sungchian/Alzheimer-prediction",
         thumbnail: "src/assets/project/alzheimer.jpg",
         title: "Alzheimer Prediction",
@@ -789,7 +796,12 @@ export default {
       },
       {
         id: 4,
-        category: ["All", "Machine Learning", "Business Analysis", "Data Analysis"],
+        category: [
+          "All",
+          "Machine Learning",
+          "Business Analysis",
+          "Data Analysis",
+        ],
         href: "https://github.com/sungchian/loan-approval-prediction",
         thumbnail: "src/assets/project/loan-prediction.jpg",
         title: "Loan-approval Prediction",
@@ -797,7 +809,12 @@ export default {
       },
       {
         id: 5,
-        category: ["All", "Business Analysis", "Data Analysis", "Data Visualization"],
+        category: [
+          "All",
+          "Business Analysis",
+          "Data Analysis",
+          "Data Visualization",
+        ],
         href: "https://github.com/sungchian/collision-analysis",
         thumbnail: "src/assets/project/collision.jpg",
         title: "Collision Analysis",
@@ -853,8 +870,26 @@ export default {
       selectedCategory.value = category;
     };
 
-    onMounted(() => {
+    onMounted(async () => {
       window.addEventListener("scroll", scrollHandler);
+
+      // image
+      for (const cert of certificates.value) {
+        const matchingImagePath = Object.keys(images).find((path) =>
+          path.toLowerCase().includes(cert.keywordForMatching)
+        );
+
+        if (matchingImagePath) {
+          try {
+            const module = await images[matchingImagePath];
+            cert.imgSrc = module.default;
+          } catch (error) {
+            console.error(`Error loading image for ${cert.name}:`, error);
+          }
+        } else {
+          console.warn(`No matching image found for ${cert.name}`);
+        }
+      }
     }),
       onUnmounted(() => {
         window.removeEventListener("scroll", scrollHandler, true);
@@ -866,7 +901,7 @@ export default {
       isScrollUp,
       //intro
       intro,
-      getImageUrl,
+      images,
       // certification
       certificates,
       // skills
