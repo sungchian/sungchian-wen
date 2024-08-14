@@ -4,7 +4,7 @@ import { resolve } from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "./",
+  base: "/VueCV/",
   plugins: [vue()],
   resolve: {
     alias: {
@@ -13,4 +13,5 @@ export default defineConfig({
     },
     extensions: [".vue", ".js"],
   },
+  publicPath: '/VueCV/',
 })
