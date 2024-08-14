@@ -455,14 +455,14 @@ export default {
     const certificates = ref([
       {
         href: "https://www.coursera.org/account/accomplishments/verify/J4KT926GJSYV",
-        imgSrc: "src/assets/certificate/CERTIFICATE_sql_for_datascience.jpeg",
+        imgSrc: "../../assets/certificate/CERTIFICATE_sql_for_datascience.jpeg",
         alt: "Certificate 1",
         name: "SQL for DataScience",
         skills: ["SQLite", "Data Science", "Data Analysis"],
       },
       {
         href: "https://www.coursera.org/account/accomplishments/verify/3A4HNSM5XRQ4",
-        imgSrc: "src/assets/certificate/CERTIFICATE_Data_Wrangling.jpeg",
+        imgSrc: "../../assets/certificate/CERTIFICATE_Data_Wrangling.jpeg",
         alt: "Certificate 2",
         name: "Data Wrangling, Analysis and AB Testing with SQL",
         skills: [
@@ -475,7 +475,7 @@ export default {
       },
       {
         href: "https://www.coursera.org/account/accomplishments/verify/46UWAUXD9T4D",
-        imgSrc: "src/assets/certificate/CERTIFICATE_Capstone.jpeg",
+        imgSrc: "../../assets/certificate/CERTIFICATE_Capstone.jpeg",
         alt: "Certificate 3",
         name: "SQL for Data Science Capstone Project",
         skills: [
@@ -489,14 +489,14 @@ export default {
       {
         href: "https://www.coursera.org/account/accomplishments/verify/ZN9DCJA2CVV8",
         imgSrc:
-          "src/assets/certificate/CERTIFICATE_Distributed_Computing_with_Spark_SQL.jpeg",
+          "../../assets/certificate/CERTIFICATE_Distributed_Computing_with_Spark_SQL.jpeg",
         alt: "Certificate 4",
         name: "Distributed Computing with Spark SQL",
         skills: ["Apache Spark", "Delta Lake", "Data Science", "SQL"],
       },
       {
         href: "https://www.coursera.org/account/accomplishments/verify/SA2576JX2YXB",
-        imgSrc: "src/assets/certificate/CERTIFICATE_Customer_Analytics.jpeg",
+        imgSrc: "../../assets/certificate/CERTIFICATE_Customer_Analytics.jpeg",
         alt: "Certificate 5",
         name: "Customer Analytics",
         skills: [
@@ -508,7 +508,7 @@ export default {
       },
       {
         href: "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/PwC%20US/N9wYyLnaWpizw8Yjy_PwC%20US_S3mMctR253k4zMKHG_1719428303519_completion_certificate.pdf",
-        imgSrc: "src/assets/certificate/PwC_Audit.jpg",
+        imgSrc: "../../assets/certificate/PwC_Audit.jpg",
         alt: "Certificate 6",
         name: "PwC Audit Simulation",
         skills: [
@@ -521,7 +521,7 @@ export default {
       },
       {
         href: "https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/PwC%20Switzerland/a87GpgE6tiku7q3gu_PwC%20Switzerland_S3mMctR253k4zMKHG_1722988045499_completion_certificate.pdf",
-        imgSrc: "src/assets/certificate/PwC_powerbi.jpg",
+        imgSrc: "../../assets/certificate/PwC_powerbi.jpg",
         alt: "Certificate 6",
         name: "Power BI Job Simulation",
         skills: [
