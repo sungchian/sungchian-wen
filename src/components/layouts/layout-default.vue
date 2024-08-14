@@ -457,6 +457,10 @@ export default {
       "@/assets/certificate/*.{png,jpg,jpeg,svg}",
       { eager: true }
     );
+    const images_project = import.meta.glob(
+      "@/assets/project/*.{png,jpg,jpeg,svg}",
+      { eager: true } //取消懶加載
+    );
 
     const certificates = ref([
       {
@@ -546,143 +550,6 @@ export default {
           "Calculating Measures",
         ],
         keywordForMatching: "PwC_powerbi",
-      },
-    ]);
-
-    const skills = ref([
-      {
-        name: "Data Analytics & Data Science",
-        icon: "../../assets/data-science.png", // 請確保使用適當的圖標
-        categories: [
-          {
-            name: "Data Science",
-            items: [
-              "Statistics",
-              "Probability",
-              "Hypothesis Testing",
-              "A/B Testings",
-              "Data-driven Decision Making",
-              "Metrics Design",
-              "Root Cause Analysis",
-              "Predictive Analytics",
-              "Time Series Analytics",
-            ],
-          },
-          {
-            name: "Business Intelligence",
-            items: ["Tableau", "Power BI", "Google Sheets", "MS Excel"],
-          },
-          {
-            name: "Programming",
-            items: ["Python", "SQL", "R"],
-          },
-          {
-            name: "Tools & Libraries",
-            items: [
-              "Jupyter",
-              "Databricks",
-              "PySpark",
-              "SQLAlchemy",
-              "pandas",
-              "NumPy",
-              "SciPy",
-              "Plotly",
-              "Seaborn",
-              "Matplotlib",
-              "NLTK",
-              "Anaconda",
-            ],
-          },
-        ],
-      },
-      {
-        name: "Artificial Intelligence & Machine Learning",
-        icon: "../../assets/ai-ml.png", // 請確保使用適當的圖標
-        categories: [
-          {
-            name: "Machine Learning",
-            items: [
-              "Supervised Learning",
-              "Unsupervised Learning",
-              "Regression",
-              "Classification",
-              "Clustering",
-              "Dimensionality Reduction",
-            ],
-          },
-          {
-            name: "Deep Learning",
-            items: [
-              "Natural Language Processing (NLP)",
-              "Generative Adversarial Network (GAN)",
-              "Neural Network",
-            ],
-          },
-          {
-            name: "Programming",
-            items: [
-              "Python",
-              "SQL",
-              "Model Containerization",
-              "API Development",
-              "Flask",
-              "Flask-RESTful",
-            ],
-          },
-          {
-            name: "Tools & Libraries",
-            items: [
-              "Scikit-learn",
-              "XGBoost",
-              "LightGBM",
-              "CatBoost",
-              "Keras",
-              "NLTK",
-              "TensorFlow",
-              "Feature Engineering",
-              "MLflow",
-              "MLOps",
-            ],
-          },
-        ],
-      },
-      {
-        name: "Computer Science & Developing",
-        icon: "../../assets/computer-science.png", // 請確保使用適當的圖標
-        categories: [
-          {
-            name: "Programming",
-            items: [
-              "Python",
-              "Data Structures & Algorithms",
-              "R",
-              "Bash",
-              "HTML",
-              "JavaScript",
-              "CSS",
-              "Markdown",
-              "Shell Scripting",
-              "Flask",
-              "API Development",
-            ],
-          },
-          {
-            name: "Cloud Computing",
-            items: ["AWS", "GCP", "Azure"],
-          },
-          {
-            name: "DevOps",
-            items: [
-              "Linux",
-              "Git",
-              "Docker",
-              "RegEx",
-              "LaTex",
-              "Agile Development",
-              "CI/CD",
-            ],
-          },
-        ],
       },
     ]);
 
@@ -776,7 +643,9 @@ export default {
         id: 1,
         category: ["All", "Business Analysis", "Data Visualization"],
         href: "https://public.tableau.com/app/profile/sung.chian.wen/viz/VisualizationofInsuranceCompanysDividendRatesvs_InterestRates/InsuranceCompanysDividendRatesvsInterestRates?publish=yes",
-        thumbnail: "src/assets/project/tableau-dividend-rates.jpg",
+        // thumbnail: "src/assets/project/tableau-dividend-rates.jpg",
+        thumbnail: "",
+        keywordForMatching: "tableau-dividend-rates",
         title: "Insurance Company's Dividend Rates vs. Interest Rates",
         description: "Description 1",
       },
@@ -784,7 +653,8 @@ export default {
         id: 2,
         category: ["All", "Deep Learning", "Machine Learning"],
         href: "https://github.com/sungchian/DeepLearning-Ruined-Fruit-Detection",
-        thumbnail: "src/assets/project/Fresh-and-Rotten-Classification.jpg",
+        thumbnail: "",
+        keywordForMatching: "Fresh-and-Rotten-Classification",
         title: "Fresh and Rotten Classification",
         description: "Description 2",
       },
@@ -797,7 +667,8 @@ export default {
           "Data Analysis",
         ],
         href: "https://github.com/sungchian/Alzheimer-prediction",
-        thumbnail: "src/assets/project/alzheimer.jpg",
+        thumbnail: "",
+        keywordForMatching: "alzheimer",
         title: "Alzheimer Prediction",
         description: "Description 3",
       },
@@ -810,7 +681,8 @@ export default {
           "Data Analysis",
         ],
         href: "https://github.com/sungchian/loan-approval-prediction",
-        thumbnail: "src/assets/project/loan-prediction.jpg",
+        thumbnail: "",
+        keywordForMatching: "loan-prediction",
         title: "Loan-approval Prediction",
         description: "Description 4",
       },
@@ -823,7 +695,8 @@ export default {
           "Data Visualization",
         ],
         href: "https://github.com/sungchian/collision-analysis",
-        thumbnail: "src/assets/project/collision.jpg",
+        thumbnail: "",
+        keywordForMatching: "collision",
         title: "Collision Analysis",
         description: "Description 5",
       },
@@ -831,34 +704,11 @@ export default {
         id: 6,
         category: ["All", "Data Visualization"],
         href: "https://github.com/sungchian/Diversity-and-Inclusion/tree/master",
-        thumbnail: "src/assets/project/power-bi.jpg",
+        thumbnail: "",
+        keywordForMatching: "power-bi",
         title: "Diversity & Inclusion",
         description: "Description 6",
-      },
-      {
-        id: 7,
-        category: ["Machine Learning"],
-        thumbnail:
-          "src/assets/certificate/CERTIFICATE_sql_for_datascience.jpeg",
-        title: "Project 6",
-        description: "Description 6",
-      },
-      {
-        id: 8,
-        category: ["Machine Learning"],
-        thumbnail:
-          "src/assets/certificate/CERTIFICATE_sql_for_datascience.jpeg",
-        title: "Project 6",
-        description: "Description 6",
-      },
-      {
-        id: 9,
-        category: ["Machine Learning"],
-        thumbnail:
-          "src/assets/certificate/CERTIFICATE_sql_for_datascience.jpeg",
-        title: "Project 6",
-        description: "Description 6",
-      },
+      }
     ]);
 
     const filteredProjects = computed(() => {
@@ -879,24 +729,7 @@ export default {
 
     onMounted(async () => {
       window.addEventListener("scroll", scrollHandler);
-
-      // image
-      // for (const cert of certificates.value) {
-      //   const matchingImagePath = Object.keys(images_certificate).find((path) =>
-      //     path.toLowerCase().includes(cert.keywordForMatching)
-      //   );
-
-      //   if (matchingImagePath) {
-      //     try {
-      //       const module = await images_certificate[matchingImagePath];
-      //       cert.imgSrc = module.default;
-      //     } catch (error) {
-      //       console.error(`Error loading image for ${cert.name}:`, error);
-      //     }
-      //   } else {
-      //     console.warn(`No matching image found for ${cert.name}`);
-      //   }
-      // }
+      // certificate
       const imageModules = await Promise.all(
         Object.values(images_certificate).map((importFunc) => importFunc)
       );
@@ -919,6 +752,28 @@ export default {
           console.warn(`No matching image found for ${cert.name}`);
         }
       }
+      // project
+      const imageModules_ = await Promise.all(
+        Object.values(images_project).map((importFunc) => importFunc)
+      );
+
+      const imageMap_ = Object.fromEntries(
+        Object.keys(images_project).map((path, index) => [
+          path,
+          imageModules_[index].default,
+        ])
+      );
+      for (const project of projects.value) {
+        const matchingImagePath = Object.keys(imageMap_).find((path) =>
+          path.toLowerCase().includes(project.keywordForMatching.toLowerCase())
+        );
+
+        if (matchingImagePath) {
+          project.thumbnail = imageMap_[matchingImagePath];
+        } else {
+          console.warn(`No matching image found for ${project.name}`);
+        }
+      }
     }),
       onUnmounted(() => {
         window.removeEventListener("scroll", scrollHandler, true);
@@ -933,8 +788,6 @@ export default {
       images_certificate,
       // certification
       certificates,
-      // skills
-      skills,
       // experience
       jobs,
       openJobIndex,
@@ -945,6 +798,7 @@ export default {
       // projects
       categories,
       selectedCategory,
+      images_project,
       projects,
       filteredProjects,
       selectCategory,

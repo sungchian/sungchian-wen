@@ -38,14 +38,22 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 
 export default {
   setup() {
+    // 使用 Vite 的动态导入功能
+    const images_skill = import.meta.glob(
+      "@/assets/*.{png,jpg,jpeg,svg}",
+      { eager: true }
+    );
+
     const skills = ref([
       {
         name: "Data Analytics & Data Science",
-        image: "src/assets/data-analysis_ill.png",
+        // image: "src/assets/data-analysis_ill.png",
+        image: "",
+        keywordForMatching: "data-analysis_ill",
         categories: [
           {
             name: "Data Science",
@@ -89,7 +97,8 @@ export default {
       },
       {
         name: "Artificial Intelligence & Machine Learning",
-        image: "src/assets/predictive_ill.png",
+        image: "",
+        keywordForMatching: "predictive_ill",
         categories: [
           {
             name: "Machine Learning",
@@ -137,7 +146,8 @@ export default {
       },
       {
         name: "Computer Science & Developing",
-        image: "src/assets/real-time-analysis_ill.png",
+        image: "",
+        keywordForMatching: "real-time-analysis_ill",
         categories: [
           {
             name: "Programming",
@@ -175,8 +185,34 @@ export default {
       },
     ]);
 
+    onMounted(async () => {
+      const imageModules = await Promise.all(
+        Object.values(images_skill).map((importFunc) => importFunc)
+      );
+
+      const imageMap = Object.fromEntries(
+        Object.keys(images_skill).map((path, index) => [
+          path,
+          imageModules[index].default,
+        ])
+      );
+
+      for (const skill of skills.value) {
+        const matchingImagePath = Object.keys(imageMap).find((path) =>
+          path.toLowerCase().includes(skill.keywordForMatching.toLowerCase())
+        );
+
+        if (matchingImagePath) {
+          skill.image = imageMap[matchingImagePath];
+        } else {
+          console.warn(`No matching image found for ${skill.name}`);
+        }
+      }
+    });
+
     return {
       skills,
+      images_skill,
     };
   },
 };
