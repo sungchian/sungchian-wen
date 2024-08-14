@@ -455,14 +455,14 @@ export default {
     const certificates = ref([
       {
         href: "https://www.coursera.org/account/accomplishments/verify/J4KT926GJSYV",
-        imgSrc: "../../assets/certificate/CERTIFICATE_sql_for_datascience.jpeg",
+        imgSrc: "/sungchian-wen/assets/certificate/CERTIFICATE_sql_for_datascience.jpeg",
         alt: "Certificate 1",
         name: "SQL for DataScience",
         skills: ["SQLite", "Data Science", "Data Analysis"],
       },
       {
         href: "https://www.coursera.org/account/accomplishments/verify/3A4HNSM5XRQ4",
-        imgSrc: "../../assets/certificate/CERTIFICATE_Data_Wrangling.jpeg",
+        imgSrc: "/sungchian-wen/assets/certificate/CERTIFICATE_Data_Wrangling.jpeg",
         alt: "Certificate 2",
         name: "Data Wrangling, Analysis and AB Testing with SQL",
         skills: [
