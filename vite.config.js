@@ -4,7 +4,7 @@ import { resolve } from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/VueCV/",
+  base: "/sungchian-wen/",
   plugins: [vue()],
   resolve: {
     alias: {
@@ -13,5 +13,5 @@ export default defineConfig({
     },
     extensions: [".vue", ".js"],
   },
-  publicPath: '/VueCV/',
+  // publicPath: '/VueCV/',
 })
