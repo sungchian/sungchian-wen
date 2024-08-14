@@ -439,7 +439,6 @@ import Carousel2 from "../widgets/carousel2.vue";
 import skillComponent from "../widgets/skill-component.vue";
 // import { useRoute } from "vue-router";
 // import { useAuthStore } from "@/store/auth/store";
-import { CERTIFICATE_Capstone } from "../../assets/certificate"
 
 export default {
   name: "LayoutDefault",
@@ -467,7 +466,7 @@ export default {
       },
       {
         href: "https://www.coursera.org/account/accomplishments/verify/3A4HNSM5XRQ4",
-        imgSrc: "./assets/certificate/CERTIFICATE_Data_Wrangling.jpeg",
+        imgSrc: "certificate/CERTIFICATE_Data_Wrangling.jpeg",
         alt: "Certificate 2",
         name: "Data Wrangling, Analysis and AB Testing with SQL",
         skills: [
