@@ -160,7 +160,7 @@
         >
           <a :href="cert.href" target="_blank">
             <div class="certificate-image-container">
-              <img :src="cert.imgSrc" :alt="cert.alt" class="certificate-img" />
+              <img :src="getImageUrl(cert.imgSrc)" :alt="cert.alt" class="certificate-img" />
               <div class="certificate-overlay flex flex-col">
                 <p
                   v-for="(skill, skillIndex) in cert.skills"
@@ -439,6 +439,7 @@ import Carousel2 from "../widgets/carousel2.vue";
 import skillComponent from "../widgets/skill-component.vue";
 // import { useRoute } from "vue-router";
 // import { useAuthStore } from "@/store/auth/store";
+import { CERTIFICATE_Capstone } from "../../assets/certificate"
 
 export default {
   name: "LayoutDefault",
@@ -452,17 +453,21 @@ export default {
       "As a natural leader and problem-solving expert, I've guided a team to a top-five finish in a graduate project competition. I excel at resolving team conflicts and inspiring each member to reach their full potential, ensuring smooth project completion. I believe my unique combination of skills and cross-domain experience will bring fresh perspectives and innovative thinking to your team. I'm eager to align my analytical prowess with your business objectives, fostering a data-driven decision-making culture that propels growth and innovation. Together, we can transform data into insights, and insights into action, unlocking new opportunities for your enterprise."
     );
 
+    const getImageUrl = (path) => {
+      return new URL(`../assets/${path}`, import.meta.url).href;
+    };
+
     const certificates = ref([
       {
         href: "https://www.coursera.org/account/accomplishments/verify/J4KT926GJSYV",
-        imgSrc: "/sungchian-wen/assets/certificate/CERTIFICATE_sql_for_datascience.jpeg",
+        imgSrc: "certificate/CERTIFICATE_sql_for_datascience.jpeg",
         alt: "Certificate 1",
         name: "SQL for DataScience",
         skills: ["SQLite", "Data Science", "Data Analysis"],
       },
       {
         href: "https://www.coursera.org/account/accomplishments/verify/3A4HNSM5XRQ4",
-        imgSrc: "/sungchian-wen/assets/certificate/CERTIFICATE_Data_Wrangling.jpeg",
+        imgSrc: "./assets/certificate/CERTIFICATE_Data_Wrangling.jpeg",
         alt: "Certificate 2",
         name: "Data Wrangling, Analysis and AB Testing with SQL",
         skills: [
@@ -860,6 +865,7 @@ export default {
       isScrollUp,
       //intro
       intro,
+      getImageUrl,
       // certification
       certificates,
       // skills
