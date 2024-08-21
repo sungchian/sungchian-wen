@@ -61,90 +61,15 @@
           <p class="intro-text">
             {{ intro }}
           </p>
-          <a href="./files/resume.pdf" download="resume.pdf">Download</a>
+          <a
+            href="./files/SungChain_Wen_RESUME.pdf"
+            download="SungChain_Wen_RESUME.pdf"
+            >Download</a
+          >
         </div>
       </div>
     </div>
   </section>
-
-  <!--Certificates Section-->
-  <!-- <section class="certificates" id="certificates">
-    <div class="w2">
-      <div class="certificates-content">
-        <h2 class="title"><div class="text">CERTIFICATES</div></h2>
-      </div>
-    </div>
-    <div class="max-width">
-      <ul class="skill-group">
-        <li class="skill-list">
-          <div class="skill-item item1">
-            <div class="skill-group">
-              <img
-                src="../../assets/gold-circle.png"
-                alt=""
-                class="skill-img"
-              />
-              <img src="../../assets/ui.png" alt="" class="skill-subImg" />
-            </div>
-            <h3 class="skill-name white-t">Front-end</h3>
-            <div class="skill-p white-t">
-              <ul>
-                <li>HTML</li>
-                <li>CSS</li>
-                <li>jQuery</li>
-                <li>Vue</li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <li class="skill-list">
-          <div class="skill-item item2">
-            <div class="skill-group">
-              <img
-                src="../../assets/gold-circle.png"
-                alt=""
-                class="skill-img"
-              />
-              <img src="../../assets/coding.png" alt="" class="skill-subImg" />
-            </div>
-            <h3 class="skill-name white-t">Back-end</h3>
-            <div class="skill-p white-t">
-              <ul>
-                <li>C#</li>
-                <li>JAVA</li>
-                <li>Python</li>
-                <li>Ruby</li>
-                <li>Python</li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <li class="skill-list">
-          <div class="skill-item item3">
-            <div class="skill-group">
-              <img
-                src="../../assets/gold-circle.png"
-                alt=""
-                class="skill-img"
-              />
-              <img
-                src="../../assets/database.png"
-                alt=""
-                class="skill-subImg"
-              />
-            </div>
-            <h3 class="skill-name white-t">DataBase</h3>
-            <div class="skill-p white-t">
-              <ul>
-                <li>MSSQL</li>
-                <li>Oracle</li>
-                <li>SQLite</li>
-              </ul>
-            </div>
-          </div>
-        </li>
-    </div>
-  </section> -->
 
   <!--Certificates Section-->
   <section class="certificates" id="certificates">
@@ -265,10 +190,11 @@
               @click="selectCategory(category)"
             >
               <button
-                class="btn btn-primary focus-style"
+                class="btn btn-primary focus-style category-button relative overflow-hidden"
                 :class="{ active: category === selectCategory }"
               >
                 {{ category }}
+                <span class="underline absolute w-full h-0.5"></span>
               </button>
             </li>
           </ul>
@@ -289,7 +215,7 @@
                   alt="Project Thumbnail"
                 />
                 <div class="card-body">
-                  <h5 class="card-title font-bold">
+                  <h5 class="card-title font-bold font-robert mt-0.5">
                     {{ project.title }}
                   </h5>
                   <p class="card-text text-gray-700">
@@ -351,7 +277,7 @@
             </svg>
           </div>
           <div>
-            <p class="email">bnbn870829@gmail.com</p>
+            <p class="email"><a href="mailto: bnbn870829@gmail.com">bnbn870829@gmail.com</a></p>
             <p class="email-text">Email</p>
           </div>
         </div>
@@ -708,7 +634,7 @@ export default {
         keywordForMatching: "power-bi",
         title: "Diversity & Inclusion",
         description: "Description 6",
-      }
+      },
     ]);
 
     const filteredProjects = computed(() => {
