@@ -277,7 +277,9 @@
             </svg>
           </div>
           <div>
-            <p class="email"><a href="mailto: bnbn870829@gmail.com">bnbn870829@gmail.com</a></p>
+            <p class="email">
+              <a href="mailto: bnbn870829@gmail.com">bnbn870829@gmail.com</a>
+            </p>
             <p class="email-text">Email</p>
           </div>
         </div>
@@ -481,16 +483,27 @@ export default {
 
     const jobs = ref([
       {
+        company: "Society for the Promotion of Japanese Animation (SPJA)",
+        location: "Corona, CA",
+        position: " Jr. Financial/Business Analyst",
+        duration: "10/2024 – 11/2024",
+        responsibilities: [
+          "Created Power BI dashboards with DAX to track Netflix and Hulu's top-performing anime and series, resulting in a 20% increase in vendor participation and improved title selection for Anime Expo.",
+          "Coordinated with Operations, Entertainment, and Marketing teams to analyze and streamline expenses, leading to a 15% reduction in budget variances and improved financial transparency.",
+          "Improved forecast reliability and resource allocation by developing Time Series budget forecasting models, enabling more precise financial planning and reducing projected variances.",
+        ],
+      },
+      {
         company: "Avanath Real Estate",
         location: "Irvine, CA",
         position: "Student Data Analyst",
         duration: "01/2024 – 06/2024",
         responsibilities: [
-          "Collaborated with Senior Team Lead to build models and implement strategies for real estate performance measurement and analytics, enhancing operational efficiency and driving cost savings.",
-          "Organized, cleaned, manipulated, and labeled various datasets to support financial data analysis and budgeting processes, using Python.",
-          "Created interactive dashboards in Tableau to visualize key metrics, providing stakeholders with investment insights to enhance real estate operations and spur business growth.",
-          "Developed predictive analytics models that leverage historical data and trends to improve forecasting accuracy, identifying potential changes in external factors affecting real estate performance.",
-          "Leveraged advanced Excel functions including VLOOKUP, pivot tables, and macros to streamline data processing, and perform complex statistical analyses, resulting in a 30% reduction in reporting time.",
+          "Built quantitative models for 100+ assets using Python, converting 20+ market signals into measurable scores to serve as factors in the evaluation process.",
+          "Accelerated financial analysis and budgeting processes by 25% by crafting robust Python scripts for data cleansing and transformation.",
+          "Empowered stakeholders to make data-driven investment decisions and capitalize on macroeconomic trends by constructing interactive Tableau dashboards to visualize key metrics.",
+          "Improved forecasting accuracy by 20% through engineering predictive analytics models utilizing historical data and enabling proactive responses to market fluctuations.",
+          "Reduced reporting time by 30% by streamlining data processing workflows with advanced Excel functions and PivotTable.",
         ],
       },
       {
@@ -499,9 +512,9 @@ export default {
         position: "Frontend Developer",
         duration: "02/2022 – 08/2022",
         responsibilities: [
-          "Led the design and execution of a sports information website project using Vue3, incorporating SEO best practices to enhance site visibility and search engine ranking.",
-          "Migrated an existing project from Vue Cli to Vite, improving overall development efficiency by 30%.",
-          "Collaborated cross-functionally with a manager and backend engineers to develop a Management System using Git, RESTful API, and Apache ECharts to visualize data.",
+          "Increased organic traffic by 25% through executing comprehensive web analytics to enhance site visibility and search engine performance(SEO).",
+          "Enabled real-time KPI monitoring by creating a dynamic data visualization dashboard using Apache ECharts.",
+          "Achieved a 15%improvement in project outcomes by leading cross-functional teams in developing websites, utilizing Agile methodologies and Jira for efficient project tracking and collaboration.",
         ],
       },
       {
@@ -510,9 +523,9 @@ export default {
         position: "Data Engineer",
         duration: "05/2020 – 02/2022",
         responsibilities: [
-          "Utilized MSSQL to Extract, Transform, and Load (ETL) large-scale datasets, and leveraged RESTful API to integrate disparate data sources, ensuring seamless connectivity and driving project insights.",
-          "Assured consistent data quality by conducting regular audits, reducing reporting errors by 30%.",
-          "Communicated with medical professionals to gather and prioritize their requirements for the system, and ensured data collection and timely implementation to meet their needs.",
+          "Enhanced data accessibility and analysis speed by 40% through architecting and deploying ETL processes using MSSQL for expansive healthcare datasets.",
+          "Improved resource allocation and care strategies by 20% through performing in-depth analyses of patient information to uncover trends",
+          "Coordinated with medical professionals to translate complex healthcare requirements into actionable data collection and analysis plans, accelerating project implementation by 25%",
         ],
       },
     ]);

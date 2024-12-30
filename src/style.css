@@ -104,7 +104,7 @@ section{
     overflow: hidden;
 }
 
-.navbar .nav-item a {
+.navbar .nav-item a{
     color: var(--gold);
     font-size: 16px;
     font-weight: 800;
@@ -113,6 +113,11 @@ section{
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
+}
+.navbar .nav-item svg{
+    stroke: var(--gold);
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .navbar .nav-item .underline {

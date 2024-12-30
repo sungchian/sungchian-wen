@@ -13,5 +13,6 @@ export default defineConfig({
     },
     extensions: [".vue", ".js"],
   },
+  // 您的 vite.config.js 基本設置已經很好了，但 publicPath 是 webpack 的配置項，在 Vite 中不需要，我們可以移除它：
   // publicPath: '/VueCV/',
 })
